@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cửa hàng bán quần áo thời trang nam nữ đẹp, phong cách, giá rẻ">
+  <meta name="keywords" content="quần áo, thời trang, bán quần áo, quần áo nam, quần áo nữ, giày dép nam nữ, thời trang giá rẻ">
+  <meta name="author" content="Tên cửa hàng của bạn">
+  <title>Bán Quần Áo Thời Trang - Đẹp, Giá Rẻ | TVL Cửa Hàng</title>
+
+  <!-- Liên kết tới Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    header {
+      background-color: #34495e;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    nav ul li {
+      margin: 0 20px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #f39c12;
+    }
+
+    /* Icon Menu */
+    .icon-menu {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      display: flex;
+      gap: 15px;
+    }
+
+    .icon {
+      color: #fff;
+      font-size: 24px;
+      position: relative;
+      text-decoration: none;
+    }
+
+    .icon:hover {
+      color: #f39c12;
+    }
+
+    /* Tooltip */
+    .icon[title]::after {
+      content: attr(title);
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #333;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 14px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      white-space: nowrap;
+    }
+
+    .icon:hover[title]::after {
+      opacity: 1;
+    }
+
+    /* Cart Count */
+    .cart-count {
+      background-color: red;
+      color: #fff;
+      font-size: 14px;
+      border-radius: 50%;
+      padding: 2px 6px;
+      position: absolute;
+      top: -5px;
+      right: -10px;
+    }
+
+    .banner {
+      background-image: url('/anh/image/images/shop.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 450px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      font-size: 48px;
+      text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+      margin-bottom: 20px;
+    }
+
+    .section {
+      padding: 50px 0;
+      text-align: center;
+      background-color: #ffe082;
+      margin-bottom: 20px;
+    }
+
+    .section h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+
+    .section p {
+      font-size: 18px;
+      color: #7f8c8d;
+      margin-bottom: 40px;
+    }
+
+    .product-list {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .product {
+      flex-basis: 23%;
+      box-sizing: border-box;
+      text-align: center;
+      padding: 20px;
+      background-color: #f5f5f5;
+      border-radius: 10px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .product img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .product h3 {
+      margin-top: 15px;
+      font-size: 24px;
+      color: #2c3e50;
+    }
+
+    .product p {
+      font-size: 18px;
+      color: #e67e22;
+    }
+
+    .product button {
+      margin-top: 15px;
+      padding: 12px 24px;
+      background-color: #e67e22;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .product button:hover {
+      background-color: #d35400;
+    }
+
+    footer {
+      background-color: #34495e;
+      color: white;
+      padding: 30px 0;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    /* Modal Styling */
+    .modal {
+      display: none; /* Ẩn modal mặc định */
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+      background-color: white;
+      margin: 10% auto;
+      padding: 40px;
+      border-radius: 10px;
+      width: 60%;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal img {
+      width: 100%;
+      max-width: 250px;
+      height: auto;
+      margin-bottom: 30px;
+      border-radius: 10px;
+    }
+
+    .modal button {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 18px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .modal button:hover {
+      background-color: #c0392b;
+    }
+
+    .modal-content h2 {
+      font-size: 28px;
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+
+    .modal-content {
+      background: linear-gradient(135deg, #f9d423, #ff4e50);
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 400px;
+      max-height: 100vh;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      overflow-y: auto;
+    }
+
+  </style>
+</head>
+<body>
+<header>
+  <h1>Cửa Hàng Thời Trang - RuPon Store</h1>
+  <nav>
+    <ul>
+      <li><a href="/index">Trang chủ</a></li>
+      <li><a href="/gioithieu">Giới thiệu</a></li>
+      <li><a href="/sanpham">Sản phẩm</a></li>
+      <li><a href="/lienhe">Liên hệ</a></li>
+    </ul>
+  </nav>
+  <div class="icon-menu">
+    <a href="#" class="icon" title="Tìm kiếm"><i class="fas fa-search"></i></a>
+    <a href="/dangnhap" class="icon" title="Đăng nhập"><i class="fas fa-user"></i></a>
+    <a href="/vitri" class="icon" title="Vị trí"><i class="fas fa-map-marker-alt"></i></a>
+    <a href="/giohang" class="icon" title="Giỏ hàng"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
+  </div>
+
+</header>
+
+<div class="banner">
+  <p>Khám phá phong cách của bạn!</p>
+</div>
+
+<main>
+  <section class="section">
+    <h2>Bộ sản phẩm quần áo</h2>
+    <p>Khám phá bộ sản phẩm quần áo thời trang mới nhất với giá cả hợp lý !</p>
+
+    <div class="product-list">
+      <article class="product">
+        <img src="/anh/image/images/pijama-nam-nu-caro-den.jpg" alt="Bộ đồ ngủ phong cách" />
+        <h3>Áo ngủ phong cách</h3>
+        <p>Giá: 200.000 VND</p>
+        <button class="view-details" onclick="showProductDetail('Áo ngủ phong cách', '/anh/image/images/pijama-nam-nu-caro-den.jpg', '200.000 VND', 'Việt Nam', 'Cotton', 'Bộ đồ ngủ thoải mái dành cho nam nữ.')">Xem chi tiết</button>
+        <button class="buy-now">Mua ngay</button>
+      </article>
+
+      <article class="product">
+        <img src="/anh/image/images/aophong.jpg" alt="Áo phông thời trang" />
+        <h3>Áo phông nam</h3>
+        <p>Giá: 150.000 VND</p>
+        <button class="view-details" onclick="showProductDetail('Áo phông nam', '/anh/image/images/aophong.jpg', '150.000 VND', 'Việt Nam', 'Cotton', 'Áo phông nam thời trang, dễ phối đồ.')">Xem chi tiết</button>
+        <button class="buy-now">Mua ngay</button>
+      </article>
+
+      <article class="product">
+        <img src="/anh/image/images/aobonam.jpg" alt="Trang phục thời trang" />
+        <h3>Áo bộ nam</h3>
+        <p>Giá: 650.000 VND</p>
+        <button class="view-details" onclick="showProductDetail('Áo bộ nam', '/anh/image/images/aobonam.jpg', '650.000 VND', 'Hàn Quốc', 'Polyester', 'Trang phục thời trang lịch lãm dành cho nam giới.')">Xem chi tiết</button>
+        <button class="buy-now">Mua ngay</button>
+      </article>
+
+      <article class="product">
+        <img src="/anh/image/images/vay.jpg" alt="Váy công sở nữ" />
+        <h3>Váy công sở nữ</h3>
+        <p>Giá: 300.000 VND</p>
+        <button class="view-details" onclick="showProductDetail('Váy công sở nữ', '/anh/image/images/vay.jpg', '300.000 VND', 'Việt Nam', 'Lụa', 'Váy công sở nữ thanh lịch.')">Xem chi tiết</button>
+        <button class="buy-now">Mua ngay</button>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Bộ sản phẩm giày dép thời trang</h2>
+    <p>Khám phá bộ sản phẩm giày dép thời trang với nhiều mẫu mã đa dạng và giá cả hợp lý !</p>
+
+    <div class="product-list">
+      <article class="product">
+        <img src="/anh/image/images/giaydanam.jpg" alt="Giày thời trang dài" />
+        <h3>Giày nam da thời thượng</h3>
+        <p>Giá: 800.000 VND</p>
+        <button class="view-details" onclick="showProductDetail('Giày nam da thời thượng', '/anh/image/images/giaydanam.jpg', '800.000 VND', 'Ý', 'Da thật', 'Giày nam da cao cấp.')">Xem chi tiết</button>
+        <button class="buy-now">Mua ngay</button>
+      </article>
+
+      <article class="product">
+        <img src="/anh/image/images/giaycaogot.jpg" alt="Giày nữ cao gót" />
+        <h3>Giày cao gót nữ</h3>
+        <p>Giá: 500.000 VND</p>
+        <button class="view-details" onclick="showProductDetail('Giày cao gót nữ', '/anh/image/images/giaycaogot.jpg', '500.000 VND', 'Việt Nam', 'Da PU', 'Giày cao gót nữ thanh lịch.')">Xem chi tiết</button>
+        <button class="buy-now">Mua ngay</button>
+      </article>
+
+      <article class="product">
+        <img src="/anh/image/images/giaytrangnu.jpg" alt="Giày thời trang nữ" />
+        <h3>Giày thời trang nữ</h3>
+        <p>Giá: 300.000 VND</p>
+        <button class="view-details" onclick="showProductDetail('Dép sandal nam', '/anh/image/images/giaytrangnu.jpg', '300.000 VND', 'Việt Nam', 'Cao su', 'Giày thời trang nữ thoải mái.')">Xem chi tiết</button>
+        <button class="buy-now">Mua ngay</button>
+      </article>
+    </div>
+  </section>
+</main>
+
+<!-- Modal sản phẩm chi tiết -->
+<div id="productModal" class="modal">
+  <div class="modal-content">
+    <span id="modalClose" style="float: right; cursor: pointer; font-size: 25px;">&times;</span>
+    <h2 id="modalTitle"></h2>
+    <img id="modalImage" src="" alt="Hình ảnh sản phẩm" />
+    <p><strong>Giá:</strong> <span id="modalPrice"></span></p>
+    <p><strong>Xuất xứ:</strong> <span id="modalOrigin"></span></p>
+    <p><strong>Chất liệu:</strong> <span id="modalMaterial"></span></p>
+    <p id="modalDescription"></p>
+    <button onclick="closeModal()">Đóng</button>
+  </div>
+</div>
+<footer>
+  <p>© 2024 Cửa Hàng Thời Trang RuPon. All rights reserved.</p>
+</footer>
+<script>
+  function showProductDetail(title, imageUrl, price, origin, material, description) {
+    document.getElementById("modalTitle").textContent = title;
+    document.getElementById("modalImage").src = imageUrl;
+    document.getElementById("modalPrice").textContent = price;
+    document.getElementById("modalOrigin").textContent = origin;
+    document.getElementById("modalMaterial").textContent = material;
+    document.getElementById("modalDescription").textContent = description;
+    document.getElementById("productModal").style.display = "block";
+  }
+
+  function closeModal() {
+    document.getElementById("productModal").style.display = "none";
+  }
+
+  document.getElementById("modalClose").onclick = function() {
+    closeModal();
+  }
+</script>
+</body>
+</html>
